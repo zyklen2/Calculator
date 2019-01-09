@@ -32,6 +32,14 @@ public class Calculate {
         public ArrayList<BigInteger> MultiplicativePrime(BigInteger rangeFrom, BigInteger rangeTo) {
             return Calculate.this.MultiplicativePrime(rangeFrom, rangeTo);
         }
+
+        public void listMethods() {
+            System.out.println("--- public methods for " + getClass().getName());
+            for (int i = 0; i < methods.length; i++)
+                if (!methods[i].toString().contains("Object") && !methods[i].toString().contains("list"))
+                    System.out.println(methods[i]);
+            System.out.println("---");
+        }
     }
 
     private ArrayList<BigInteger> PrimeGenerator(BigInteger rangeFrom, BigInteger rangeTo) {

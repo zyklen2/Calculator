@@ -4,33 +4,30 @@ import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 public class MultiplicativePrime {
-        private static Calculate instance = new Calculate();
+        private static MultiplicativePrime instance = new MultiplicativePrime();
         public Port port;
 
-        private Calculate() {
+        private MultiplicativePrime() {
             port = new Port();
         }
 
-        public static Calculate getInstance() {
+        public static MultiplicativePrime getInstance() {
             return instance;
         }
 
-        public class Port implements ICalculate {
+        public class Port {
             private Method[] methods = getClass().getMethods();
 
-            @Override
-            public ArrayList<BigInteger> Semiprime(BigInteger rangeFrom, BigInteger rangeTo) {
-                return Calculate.this.Semiprime(rangeFrom, rangeTo);
-            }
-
-            @Override
-            public ArrayList<BigInteger> Primetriplet(BigInteger rangeFrom, BigInteger rangeTo) {
-                return Calculate.this.Primetriplet(rangeFrom, rangeTo);
-            }
-
-            @Override
             public ArrayList<BigInteger> MultiplicativePrime(BigInteger rangeFrom, BigInteger rangeTo) {
-                return Calculate.this.MultiplicativePrime(rangeFrom, rangeTo);
+                return MultiplicativePrime.this.MultiplicativePrime(rangeFrom, rangeTo);
+            }
+
+            public void listMethods() {
+                System.out.println("--- public methods for " + getClass().getName());
+                for (int i = 0; i < methods.length; i++)
+                    if (!methods[i].toString().contains("Object") && !methods[i].toString().contains("list"))
+                        System.out.println(methods[i]);
+                System.out.println("---");
             }
         }
 
@@ -62,49 +59,6 @@ public class MultiplicativePrime {
             return prime;
         }
 
-
-        public ArrayList<BigInteger> Semiprime(BigInteger rangeFrom, BigInteger rangeTo) {
-            ArrayList<BigInteger> theList = new ArrayList<BigInteger>();
-            ArrayList<BigInteger> thePrimeList = PrimeGenerator(rangeFrom, rangeTo);
-            ArrayList<BigInteger> thePrimeList2 = thePrimeList;
-            for (BigInteger i = BigInteger.valueOf(0); i.compareTo(BigInteger.valueOf(thePrimeList.size())) == -1; i = i.add(BigInteger.valueOf(1))) {
-                for (BigInteger j = BigInteger.valueOf(0); j.compareTo(BigInteger.valueOf(thePrimeList.size())) == -1; j = j.add(BigInteger.valueOf(1))) {
-                    BigInteger newSemiprime = thePrimeList.get(i.intValue()).multiply(thePrimeList2.get(j.intValue()));
-                    boolean exist = false;
-                    for (BigInteger k = BigInteger.valueOf(0); k.compareTo(BigInteger.valueOf(theList.size())) == -1; k = k.add(BigInteger.valueOf(1))) {
-                        if (newSemiprime.compareTo(theList.get(k.intValue())) == 0) {
-                            exist = true;
-                            break;
-                        }
-                    }
-                    if (!exist) {
-                        theList.add(newSemiprime);
-                    }
-                }
-            }
-            theList = theList.stream().sorted().collect(Collectors.toCollection(ArrayList::new));
-            return theList;
-        }
-
-        public ArrayList<BigInteger> Primetriplet(BigInteger rangeFrom, BigInteger rangeTo) {
-            ArrayList<BigInteger> theList = new ArrayList<BigInteger>();
-            ArrayList<BigInteger> thePrimeList = PrimeGenerator(rangeFrom, rangeTo);
-            for (BigInteger i = BigInteger.valueOf(0); i.compareTo(BigInteger.valueOf(thePrimeList.size())) == -1; i = i.add(BigInteger.valueOf(1))) {
-                if (IsPrime(thePrimeList.get(i.intValue()).add(BigInteger.valueOf(2))) && IsPrime(thePrimeList.get(i.intValue()).add(BigInteger.valueOf(6)))) {
-                    theList.add(thePrimeList.get(i.intValue()));
-                    theList.add(thePrimeList.get(i.intValue()).add(BigInteger.valueOf(2)));
-                    theList.add(thePrimeList.get(i.intValue()).add(BigInteger.valueOf(6)));
-                }
-            }
-            for (BigInteger i = BigInteger.valueOf(0); i.compareTo(BigInteger.valueOf(thePrimeList.size())) == -1; i = i.add(BigInteger.valueOf(1))) {
-                if (IsPrime(thePrimeList.get(i.intValue()).add(BigInteger.valueOf(4))) && IsPrime(thePrimeList.get(i.intValue()).add(BigInteger.valueOf(6)))) {
-                    theList.add(thePrimeList.get(i.intValue()));
-                    theList.add(thePrimeList.get(i.intValue()).add(BigInteger.valueOf(4)));
-                    theList.add(thePrimeList.get(i.intValue()).add(BigInteger.valueOf(6)));
-                }
-            }
-            return theList;
-        }
 
         public ArrayList<BigInteger> MultiplicativePrime(BigInteger rangeFrom, BigInteger rangeTo) {
             ArrayList<BigInteger> theList = new ArrayList<BigInteger>();

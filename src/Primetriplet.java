@@ -3,23 +3,23 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
-public class Semiprime {
-    public static Semiprime instance = new Semiprime();
+public class Primetriplet {
+        private static Primetriplet instance = new Primetriplet();
         public Port port;
 
-        private Semiprime() {
+        private Primetriplet() {
             port = new Port();
         }
 
-        public static Semiprime getInstance() {
+        public static Primetriplet getInstance() {
             return instance;
         }
 
-        public class Port{
+        public class Port {
             private Method[] methods = getClass().getMethods();
 
-            public ArrayList<BigInteger> execute(BigInteger rangeFrom, BigInteger rangeTo) {
-                return Semiprime.this.execute(rangeFrom, rangeTo);
+            public ArrayList<BigInteger> Primetriplet(BigInteger rangeFrom, BigInteger rangeTo) {
+                return Primetriplet.this.Primetriplet(rangeFrom, rangeTo);
             }
 
             public void listMethods() {
@@ -59,27 +59,23 @@ public class Semiprime {
             return prime;
         }
 
-
-        public ArrayList<BigInteger> execute(BigInteger rangeFrom, BigInteger rangeTo) {
+        public ArrayList<BigInteger> Primetriplet(BigInteger rangeFrom, BigInteger rangeTo) {
             ArrayList<BigInteger> theList = new ArrayList<BigInteger>();
             ArrayList<BigInteger> thePrimeList = PrimeGenerator(rangeFrom, rangeTo);
-            ArrayList<BigInteger> thePrimeList2 = thePrimeList;
             for (BigInteger i = BigInteger.valueOf(0); i.compareTo(BigInteger.valueOf(thePrimeList.size())) == -1; i = i.add(BigInteger.valueOf(1))) {
-                for (BigInteger j = BigInteger.valueOf(0); j.compareTo(BigInteger.valueOf(thePrimeList.size())) == -1; j = j.add(BigInteger.valueOf(1))) {
-                    BigInteger newSemiprime = thePrimeList.get(i.intValue()).multiply(thePrimeList2.get(j.intValue()));
-                    boolean exist = false;
-                    for (BigInteger k = BigInteger.valueOf(0); k.compareTo(BigInteger.valueOf(theList.size())) == -1; k = k.add(BigInteger.valueOf(1))) {
-                        if (newSemiprime.compareTo(theList.get(k.intValue())) == 0) {
-                            exist = true;
-                            break;
-                        }
-                    }
-                    if (!exist) {
-                        theList.add(newSemiprime);
-                    }
+                if (IsPrime(thePrimeList.get(i.intValue()).add(BigInteger.valueOf(2))) && IsPrime(thePrimeList.get(i.intValue()).add(BigInteger.valueOf(6)))) {
+                    theList.add(thePrimeList.get(i.intValue()));
+                    theList.add(thePrimeList.get(i.intValue()).add(BigInteger.valueOf(2)));
+                    theList.add(thePrimeList.get(i.intValue()).add(BigInteger.valueOf(6)));
                 }
             }
-            theList = theList.stream().sorted().collect(Collectors.toCollection(ArrayList::new));
+            for (BigInteger i = BigInteger.valueOf(0); i.compareTo(BigInteger.valueOf(thePrimeList.size())) == -1; i = i.add(BigInteger.valueOf(1))) {
+                if (IsPrime(thePrimeList.get(i.intValue()).add(BigInteger.valueOf(4))) && IsPrime(thePrimeList.get(i.intValue()).add(BigInteger.valueOf(6)))) {
+                    theList.add(thePrimeList.get(i.intValue()));
+                    theList.add(thePrimeList.get(i.intValue()).add(BigInteger.valueOf(4)));
+                    theList.add(thePrimeList.get(i.intValue()).add(BigInteger.valueOf(6)));
+                }
+            }
             return theList;
         }
 
