@@ -5,8 +5,18 @@ public class Main {
     public static void main(String []args){
         Calculate theCalculator = Calculate.getInstance();
 
-        Calculate theCal = Calculate.getInstance();
-        theCal.port.listMethods();
+        Semiprime theCal1 = Semiprime.getInstance();
+        Primetriplet theCal2 = Primetriplet.getInstance();
+        MultiplicativePrime theCal3 = MultiplicativePrime.getInstance();
+        //ArrayList<BigInteger> theList =  theCal1.port.execute(BigInteger.valueOf(1),BigInteger.valueOf(20));
+        //ArrayList<BigInteger> theList = theCal2.port.execute(BigInteger.valueOf(1),BigInteger.valueOf(20));
+        ArrayList<BigInteger> theList = theCal3.port.execute(BigInteger.valueOf(1),BigInteger.valueOf(20));
+
+        for(BigInteger i=BigInteger.ZERO;i.compareTo(BigInteger.valueOf(theList.size()))==-1;i=i.add(BigInteger.ONE)){
+            System.out.println(theList.get(i.intValue()));
+        }
+
+
 
         /*Primetriplet newTrip = Primetriplet.getInstance();
         newTrip.port.listMethods();

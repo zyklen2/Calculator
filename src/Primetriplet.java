@@ -18,8 +18,8 @@ public class Primetriplet {
         public class Port {
             private Method[] methods = getClass().getMethods();
 
-            public ArrayList<BigInteger> Primetriplet(BigInteger rangeFrom, BigInteger rangeTo) {
-                return Primetriplet.this.Primetriplet(rangeFrom, rangeTo);
+            public ArrayList<BigInteger> execute(BigInteger rangeFrom, BigInteger rangeTo) {
+                return Primetriplet.this.execute(rangeFrom, rangeTo);
             }
 
             public void listMethods() {
@@ -59,7 +59,7 @@ public class Primetriplet {
             return prime;
         }
 
-        public ArrayList<BigInteger> Primetriplet(BigInteger rangeFrom, BigInteger rangeTo) {
+        public ArrayList<BigInteger> execute(BigInteger rangeFrom, BigInteger rangeTo) {
             ArrayList<BigInteger> theList = new ArrayList<BigInteger>();
             ArrayList<BigInteger> thePrimeList = PrimeGenerator(rangeFrom, rangeTo);
             for (BigInteger i = BigInteger.valueOf(0); i.compareTo(BigInteger.valueOf(thePrimeList.size())) == -1; i = i.add(BigInteger.valueOf(1))) {

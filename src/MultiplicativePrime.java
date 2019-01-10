@@ -18,8 +18,8 @@ public class MultiplicativePrime {
         public class Port {
             private Method[] methods = getClass().getMethods();
 
-            public ArrayList<BigInteger> MultiplicativePrime(BigInteger rangeFrom, BigInteger rangeTo) {
-                return MultiplicativePrime.this.MultiplicativePrime(rangeFrom, rangeTo);
+            public ArrayList<BigInteger> execute(BigInteger rangeFrom, BigInteger rangeTo) {
+                return MultiplicativePrime.this.execute(rangeFrom, rangeTo);
             }
 
             public void listMethods() {
@@ -29,18 +29,6 @@ public class MultiplicativePrime {
                         System.out.println(methods[i]);
                 System.out.println("---");
             }
-        }
-
-        private ArrayList<BigInteger> PrimeGenerator(BigInteger rangeFrom, BigInteger rangeTo) {
-            ArrayList<BigInteger> thePrimeList = new ArrayList<BigInteger>();
-            for (BigInteger j = rangeFrom; j.compareTo(rangeTo) == -1; j = j.add(BigInteger.ONE)) {
-                boolean prime = true;
-                prime = IsPrime(j);
-                if (prime && j != BigInteger.valueOf(1)) {
-                    thePrimeList.add(j);
-                }
-            }
-            return thePrimeList;
         }
 
         private boolean IsPrime(BigInteger thePrime) {
@@ -60,7 +48,7 @@ public class MultiplicativePrime {
         }
 
 
-        public ArrayList<BigInteger> MultiplicativePrime(BigInteger rangeFrom, BigInteger rangeTo) {
+        public ArrayList<BigInteger> execute(BigInteger rangeFrom, BigInteger rangeTo) {
             ArrayList<BigInteger> theList = new ArrayList<BigInteger>();
             ArrayList<BigInteger> theTempList = new ArrayList<BigInteger>();
             for (BigInteger i = rangeFrom; i.compareTo(rangeTo) == -1; i = i.add(BigInteger.ONE)) {
